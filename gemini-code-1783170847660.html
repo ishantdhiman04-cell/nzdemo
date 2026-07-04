@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NZ Domo | Luxury New Zealand Real Estate</title>
+    <!-- Tailwind CSS CDN (Instant local execution) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f9f9f7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2a1d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2a3827;
+        }
+        /* Reveal animation styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-[#f9f9f7] text-[#1f2a1d] antialiased overflow-x-hidden">
+
+    <!-- STICKY NAVIGATION -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-5 sm:py-6 px-4 sm:px-6 md:px-10 flex items-center justify-between text-white">
+        <a href="#" class="flex items-center gap-2 hover:opacity-80 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 sm:w-8 sm:h-8">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight uppercase">NZ Domo</span>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <div id="nav-pill" class="hidden lg:flex items-center gap-2 rounded-full pl-6 pr-1 py-1 transition-all duration-300 bg-white/20 backdrop-blur-md border border-white/30">
+            <a href="#properties" class="text-sm px-4 py-2 font-medium hover:text-white/80 transition-colors">Properties</a>
+            <a href="#prestige" class="text-sm px-4 py-2 font-medium hover:text-white/80 transition-colors">Domo Prestige</a>
+            <button class="ml-4 bg-[#1f2a1d] hover:bg-[#2a3827] text-white text-sm font-medium px-6 py-2.5 rounded-full transition-colors flex items-center gap-2 shadow-md border-0">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                Find a Home
+            </button>
+        </div>
+
+        <!-- Right Menu Controls -->
+        <div class="flex items-center gap-4">
+            <a href="#contact" class="hidden sm:flex items-center gap-2 text-sm font-medium hover:opacity-80 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Contact
+            </a>
+            <button id="menu-btn" class="lg:hidden relative flex items-center justify-center w-11 h-11 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-white transition-all duration-300" aria-label="Toggle menu">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 absolute transition-all duration-300 opacity-100 scale-100"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 absolute transition-all duration-300 opacity-0 scale-50"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE NAVIGATION DRAWER -->
+    <div id="mobile-menu" class="lg:hidden fixed inset-0 z-40 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div id="menu-overlay" class="absolute inset-0 bg-[#1f2a1d]/60 backdrop-blur-sm"></div>
+        <div id="menu-content" class="absolute top-0 right-0 bottom-0 w-[85%] max-w-sm bg-[#f9f9f7] shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] translate-x-full">
+            <div class="flex flex-col h-full pt-28 px-8 pb-8 overflow-y-auto">
+                <div class="flex flex-col gap-4">
+                    <a href="#properties" class="mobile-link text-3xl font-semibold text-[#1f2a1d] py-2 border-b border-[#1f2a1d]/10">Properties</a>
+                    <a href="#prestige" class="mobile-link text-3xl font-semibold text-[#1f2a1d] py-2 border-b border-[#1f2a1d]/10">Domo Prestige</a>
+                </div>
+                <div class="mt-10">
+                    <button class="w-full bg-[#1f2a1d] text-white text-lg font-semibold px-6 py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg border-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        Search Properties
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="relative w-full h-[100svh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 w-full h-full">
+            <video src="https://videos.pexels.com/video-files/7578552/7578552-hd_1920_1080_30fps.mp4" class="w-full h-full object-cover" muted playsinline loop autoplay preload="auto"></video>
+            <div class="absolute inset-0 bg-gradient-to-b from-[#1f2a1d]/40 via-[#1f2a1d]/20 to-[#1f2a1d]/80 mix-blend-multiply"></div>
+        </div>
+        
+        <div class="reveal active relative z-10 flex flex-col items-center text-center px-4 sm:px-6 w-full max-w-7xl mt-16">
+            <h1 class="font-normal leading-[1.05] text-white text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[6rem] xl:text-[7rem] drop-shadow-2xl" style="letter-spacing: -0.03em;">
+                Elevating <span class="text-[#a4d4ab] italic font-medium">Aotearoa</span><br>Real Estate
+            </h1>
+            <p class="mt-6 sm:mt-8 text-white/90 text-base sm:text-lg md:text-2xl font-medium leading-relaxed max-w-2xl drop-shadow-md">
+                Curating New Zealand's most extraordinary properties, architectural masterpieces, and premium lifestyle estates.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 items-center">
+                <a href="#properties" class="bg-white hover:bg-gray-100 text-[#1f2a1d] text-base font-semibold px-8 py-4 rounded-full transition-all shadow-xl hover:scale-105 duration-300">
+                    Explore Portfolio
+                </a>
+                <a href="#prestige" class="text-white text-base font-medium hover:text-[#a4d4ab] transition-colors flex items-center gap-2">
+                    Discover Prestige 
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 animate-bounce flex flex-col items-center gap-2 text-white/70">
+            <span class="text-xs font-medium tracking-widest uppercase">Scroll</span>
+            <div class="w-[1px] h-8 bg-gradient-to-b from-white/70 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="properties" class="py-24 sm:py-32 px-4 sm:px-6 md:px-10 max-w-[1400px] mx-auto">
+        <div class="reveal flex flex-col md:flex-row justify-between items-end mb-12 sm:mb-16 gap-6">
+            <div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#1f2a1d] mb-4">Featured Portfolio</h2>
+                <p class="text-[#4b5b47] text-lg max-w-lg">A curated selection of our finest available properties across New Zealand.</p>
+            </div>
+            <button class="flex items-center gap-2 text-[#1f2a1d] font-semibold hover:text-[#85AB8B] transition-colors group bg-transparent border-0">
+                View All Properties
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-5 h-5 transform group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+            <!-- Card 1 -->
+            <div class="reveal group cursor-pointer">
+                <div class="overflow-hidden rounded-2xl relative aspect-[4/3] sm:aspect-[4/5] mb-6">
+                    <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="The Milford Sound Estate" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#1f2a1d] shadow-sm">Available</div>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-[#1f2a1d] mb-2">The Milford Sound Estate</h3>
+                <p class="text-[#4b5b47] flex items-center gap-1 mb-4 text-sm sm:text-base">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Fiordland, South Island
+                </p>
+                <div class="flex items-center justify-between border-t border-[#1f2a1d]/10 pt-4">
+                    <span class="font-semibold text-lg">Price on Application</span>
+                    <div class="flex items-center gap-4 text-[#4b5b47] text-sm font-medium">
+                        <span class="flex items-center gap-1">5 Bed</span>
+                        <span class="flex items-center gap-1">4.5 Bath</span>
+                        <span class="flex items-center gap-1">850m²</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="reveal group cursor-pointer">
+                <div class="overflow-hidden rounded-2xl relative aspect-[4/3] sm:aspect-[4/5] mb-6">
+                    <img src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Wakatipu Lakehouse" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#1f2a1d] shadow-sm">Available</div>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-[#1f2a1d] mb-2">Wakatipu Lakehouse</h3>
+                <p class="text-[#4b5b47] flex items-center gap-1 mb-4 text-sm sm:text-base">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Queenstown, Otago
+                </p>
+                <div class="flex items-center justify-between border-t border-[#1f2a1d]/10 pt-4">
+                    <span class="font-semibold text-lg">$8,500,000 NZD</span>
+                    <div class="flex items-center gap-4 text-[#4b5b47] text-sm font-medium">
+                        <span class="flex items-center gap-1">4 Bed</span>
+                        <span class="flex items-center gap-1">4 Bath</span>
+                        <span class="flex items-center gap-1">620m²</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="reveal group cursor-pointer">
+                <div class="overflow-hidden rounded-2xl relative aspect-[4/3] sm:aspect-[4/5] mb-6">
+                    <img src="https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Parnell Architectural Gem" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out">
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#1f2a1d] shadow-sm">Available</div>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-[#1f2a1d] mb-2">Parnell Architectural Gem</h3>
+                <p class="text-[#4b5b47] flex items-center gap-1 mb-4 text-sm sm:text-base">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Auckland Central
+                </p>
+                <div class="flex items-center justify-between border-t border-[#1f2a1d]/10 pt-4">
+                    <span class="font-semibold text-lg">$6,250,000 NZD</span>
+                    <div class="flex items-center gap-4 text-[#4b5b47] text-sm font-medium">
+                        <span class="flex items-center gap-1">3 Bed</span>
+                        <span class="flex items-center gap-1">3 Bath</span>
+                        <span class="flex items-center gap-1">410m²</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRESTIGE SECTION -->
+    <section id="prestige" class="py-24 sm:py-32 bg-[#1f2a1d] text-white">
+        <div class="px-4 sm:px-6 md:px-10 max-w-[1400px] mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="reveal order-2 lg:order-1">
+                    <div class="relative rounded-3xl overflow-hidden aspect-square lg:aspect-[4/5]">
+                        <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Prestige Interior" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-[#2d3a2a]/20 mix-blend-multiply"></div>
+                    </div>
+                </div>
+
+                <div class="reveal order-1 lg:order-2">
+                    <div class="flex items-center gap-2 text-[#a4d4ab] mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/><path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5.5Z"/><path d="m19 17 1 2.5 2.5.5-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1Z"/></svg>
+                        <span class="text-lg font-bold tracking-widest uppercase">Domo Prestige</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl md:text-6xl font-normal mb-8 leading-tight">
+                        Discreet. <br> Dedicated. <br><span class="italic text-white/80">Distinctive.</span>
+                    </h2>
+                    <p class="text-white/80 text-lg sm:text-xl leading-relaxed mb-10 max-w-xl font-light">
+                        Our Prestige program provides unparalleled discretion and white-glove service for high-net-worth individuals navigating New Zealand's luxury property market.
+                    </p>
+                    <ul class="flex flex-col gap-4 mb-10 text-white/90">
+                        <li class="flex items-center gap-3 text-lg border-b border-white/10 pb-4"><span class="w-2 h-2 rounded-full bg-[#a4d4ab]"></span> Off-Market Opportunities</li>
+                        <li class="flex items-center gap-3 text-lg border-b border-white/10 pb-4"><span class="w-2 h-2 rounded-full bg-[#a4d4ab]"></span> Global Network Reach</li>
+                        <li class="flex items-center gap-3 text-lg border-b border-white/10 pb-4"><span class="w-2 h-2 rounded-full bg-[#a4d4ab]"></span> Dedicated Advisory Team</li>
+                    </ul>
+                    <button class="bg-white text-[#1f2a1d] hover:bg-[#a4d4ab] text-lg font-semibold px-8 py-4 rounded-full transition-colors border-0">Enquire Privately</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#151c14] text-white/60 py-12 border-t border-white/10">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2 text-white/90">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="text-xl font-bold uppercase tracking-wider">NZ Domo</span>
+            </div>
+            <div class="flex items-center gap-6 text-sm font-medium">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+            </div>
+            <p class="text-xs">&copy; 2026 NZ Domo Real Estate. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- LIGHTWEIGHT INTERACTION JAVASCRIPT -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const navPill = document.getElementById('nav-pill');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('bg-white/90', 'backdrop-blur-lg', 'shadow-sm', 'text-[#1f2a1d]', 'py-3');
+                navPill.classList.remove('bg-white/20', 'border-white/30');
+                navPill.classList.add('bg-[#f4f4f0]');
+            } else {
+                navbar.classList.add('bg-transparent', 'text-white');
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-lg', 'shadow-sm', 'text-[#1f2a1d]', 'py-3');
+                navPill.classList.add('bg-white/20', 'border-white/30');
+                navPill.classList.remove('bg-[#f4f4f0]');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuContent = document.getElementById('menu-content');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isOpen = mobileMenu.classList.contains('opacity-100');
+            if (isOpen) {
+                menuContent.classList.add('translate-x-full');
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                menuIcon.classList.remove('opacity-0', 'scale-50');
+                closeIcon.classList.remove('opacity-100', 'scale-100');
+                document.body.style.overflow = '';
+            } else {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                setTimeout(() => menuContent.classList.remove('translate-x-full'), 10);
+                menuIcon.classList.add('opacity-0', 'scale-50');
+                closeIcon.classList.add('opacity-100', 'scale-100');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Scroll Reveal Implementation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        // Initial check
+        setTimeout(revealOnScroll, 300);
+    </script>
+</body>
+</html>
